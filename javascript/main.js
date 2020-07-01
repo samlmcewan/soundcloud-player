@@ -7,9 +7,9 @@ SC.initialize({
   client_id: 'cd9be64eeb32d1741c17cb39e41d254d'
 });
 
-// find all tracks with the genre 'punk' that have a tempo greater than 120 bpm.
+// find all tracks of query
 SC.get('/tracks', {
-  genres: 'punk', bpm: { from: 120 }
+   q: 'rolling stones'
 }).then(function(tracks) {
   console.log(tracks);
 });

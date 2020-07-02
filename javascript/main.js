@@ -34,14 +34,13 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	let card = document.createElement("div");
 		card.classList.add("card");
 
-	let searchResults = document.querySelector(".js-search-results");
-		searchResults.appendChild(card);
+	
 
 	// image
 	let image = document.createElement("div");
 	image.classList.add("image");
 
-	card.appendChild(image);
+	
 
 	let image_img = document.createElement("img");
 	image_img.classList.add("image_img");
@@ -53,7 +52,7 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	let content = document.createElement("div");
 	content.classList.add("content");
 
-	card.appendChild(content);
+	
 
 	let header =  document.createElement("div");
 	header.classList.add("header");
@@ -71,7 +70,7 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	button.classList.add("button");
 	button.classList.add("js-button");
 
-	card.appendChild(button);
+	
 
 	let iconTing = document.createElement("i");
 	iconTing.classList.add("add");
@@ -84,29 +83,43 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	button.appendChild(spanner);
 
 	button.addEventListener('click', function(){
-	SoundCloudAPI.getEmbed();
+	SoundCloudAPI.getEmbed(track.permalink_url);
 		
 
 	});
 
+	// append child
+
+	card.appendChild(image);
+	card.appendChild(content);
+	card.appendChild(button);
+
+	let searchResults = document.querySelector(".js-search-results");
+		searchResults.appendChild(card);
 
 
-	});
+
+});
 
 	
 }
 
-SoundCloudAPI.getEmbed = function() {
-	console.log("clicked and we're in getEmbed");
-	SC.oEmbed('https://soundcloud.com/forss/flickermood', {
-	  auto_play: true
-	}).then(function(embed){
-	  console.log('oEmbed response: ', embed);
+	SoundCloudAPI.getEmbed = function(trackURL) {
+		console.log("clicked and we're in getEmbed");
+		SC.oEmbed(trackURL, {
+		  auto_play: true
+		}).then(function(embed){
+		  console.log('oEmbed response: ', embed);
 
-	  const sideBar = document.querySelector(".js-playlist");
-	  sideBar.innerHTML = embed.html;
+		  let sideBar = document.querySelector(".js-playlist");
+		  
+		  let box = document.createElement("div");
+		  box.innerHTML = embed.html;
 
-});
+		  sideBar.insertBefore(box, sideBar.firstChild);
+
+
+	});
 
 }
 

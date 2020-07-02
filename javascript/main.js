@@ -117,12 +117,15 @@ SoundCloudAPI.renderTracks = function(tracks) {
 		  box.innerHTML = embed.html;
 
 		  sideBar.insertBefore(box, sideBar.firstChild);
+		  localStorage.setItem("key", sideBar.innerHTML);
 
 
 	});
 
 }
 
+let sideBar = document.querySelector(".js-playlist");
+sideBar.innerHTML = localStorage.getItem("key");
 
 
 

@@ -1,5 +1,14 @@
 "use strict"
 // search	
+let UI = {};
+// object that will be a function when you press enter it will do x
+UI.enterPress 
+// object that will be a function when you click it will do x
+UI.submitClick
+// then add reset button that clears search results Storage.clear()
+// dig into soundcloud SDK playing with some parametres
+// add styling to make look super nice 
+
 
 // soundcloud API
 let SoundCloudAPI = {};

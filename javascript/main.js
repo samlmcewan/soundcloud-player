@@ -18,6 +18,7 @@ SoundCloudAPI.getTrack = function(inputValue) {
 	   q: inputValue
 	}).then(function(tracks) {
 	  console.log(tracks);
+	  SoundCloudAPI.renderTracks();
 	});
 }
 
@@ -27,12 +28,14 @@ SoundCloudAPI.getTrack();
 // display cards
 SoundCloudAPI.renderTracks = function() {
 
+	// card
 	let card = document.createElement("div");
 		card.classList.add("card");
 
 	let searchResults = document.querySelector(".js-search-results");
 		searchResults.appendChild(card);
 
+	// image
 	let image = document.createElement("div");
 	image.classList.add("image");
 
@@ -40,9 +43,11 @@ SoundCloudAPI.renderTracks = function() {
 
 	let image_img = document.createElement("img");
 	image_img.classList.add("image_img");
+	image_img.src = "http://www.placekitten.com/290/290";
 
 	image.appendChild(image_img)
 
+	// Content
 	let content = document.createElement("div");
 	content.classList.add("content");
 
@@ -50,13 +55,12 @@ SoundCloudAPI.renderTracks = function() {
 
 	let header =  document.createElement("div");
 	header.classList.add("header");
+	header.innerHTML = "<a href='#' target='_blank'>'Science Vs. Romance'</a>";
 
 	content.appendChild(header);
 
-	let header_a = document.createElement("a");
-	
-	header.appendChild(header_a);
 
+	// Button
 	let addIcon = document.createElement("div");
 	addIcon.classList.add("ui");
 	addIcon.classList.add("bottom");
@@ -77,7 +81,7 @@ SoundCloudAPI.renderTracks = function() {
 	addIcon.appendChild(spanner);
 }
 
-SoundCloudAPI.renderTracks();
+
 
 
 

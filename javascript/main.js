@@ -6,7 +6,7 @@ UI.enterPress
 // object that will be a function when you click it will do x
 UI.submitClick
 // then add reset button that clears search results Storage.clear()
-// dig into soundcloud SDK playing with some parametres
+// dig into soundcloud SDK playing with some parametres - maybe change something on the tracks that are not creative commons?! with if statement
 // add styling to make look super nice 
 
 

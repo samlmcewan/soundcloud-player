@@ -84,7 +84,8 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	button.appendChild(spanner);
 
 	button.addEventListener('click', function(){
-		console.log("click!!!");
+	SoundCloudAPI.getEmbed();
+		
 
 	});
 
@@ -95,15 +96,20 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	
 }
 
-SC.oEmbed('https://soundcloud.com/forss/flickermood', {
-  auto_play: true
-}).then(function(embed){
-  console.log('oEmbed response: ', embed);
+SoundCloudAPI.getEmbed = function() {
+	console.log("clicked and we're in getEmbed");
+	SC.oEmbed('https://soundcloud.com/forss/flickermood', {
+	  auto_play: true
+	}).then(function(embed){
+	  console.log('oEmbed response: ', embed);
 
-  const sideBar = document.querySelector(".js-playlist");
-  sideBar.innerHTML = embed.html;
+	  const sideBar = document.querySelector(".js-playlist");
+	  sideBar.innerHTML = embed.html;
 
 });
+
+}
+
 
 
 

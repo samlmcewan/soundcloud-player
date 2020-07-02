@@ -1,3 +1,4 @@
+"use strict"
 // search	
 
 
@@ -9,7 +10,7 @@ SC.initialize({
 
 // find all tracks of query
 SC.get('/tracks', {
-   q: 'rolling stones'
+   q: 'ailsa and the seahorses'
 }).then(function(tracks) {
   console.log(tracks);
 });

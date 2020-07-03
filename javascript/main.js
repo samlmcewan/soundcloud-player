@@ -101,17 +101,6 @@ SoundCloudAPI.getTrack = function(inputValue) {
 	});
 }
 
-// get tracks with input value that are creative commons only 
-SoundCloudAPI.getTrackCC = function(inputValue) {
-	
-	// find all tracks of query
-	SC.get('/tracks', {
-	   q: inputValue, license: 'cc-by-sa'
-	}).then(function(tracks) {
-	  console.log(tracks);
-	  SoundCloudAPI.renderTracks(tracks);
-	});
-}
 
 
 // display cards

@@ -1,13 +1,44 @@
 // add option (checkbox) for creative commons licence filter - alter the query value to end with q: 'buskers', license: 'cc-by-sa' concatinate probs
-
-
-
-
-
 "use strict"
 
 // search bar
 let UI = {};
+
+UI.ccBox = function() {
+
+	let checkBoxDiv = document.getElementById("ccBox");
+	let checkbox = document.createElement("input");
+
+	checkbox.type = "checkbox"; 
+    checkbox.name = "cc"; 
+    checkbox.value = "value"; 
+    checkbox.id = "ccCheckBox"; 
+
+    // creating label for checkbox 
+    let label = document.createElement('label'); 
+      
+    // assigning attributes for  
+    // the created label tag  
+    label.htmlFor = "ccCheckBox"; 
+      
+    // appending the created text to  
+    // the created label tag  
+    label.appendChild(document.createTextNode("Filter Create Commons Results Only"));
+    // appending the checkbox 
+    // and label to div 
+    checkBoxDiv.appendChild(checkbox); 
+    checkBoxDiv.appendChild(label); 
+}
+UI.ccBox();
+
+let isCheckedWithGlobalVariable = false;
+document.getElementById('ccCheckBox').onclick = function() {
+    if (this.checked == true) {
+        // the element is checked
+        isCheckedWithGlobalVariable = true;
+        console.log(isCheckedWithGlobalVariable);
+    }
+};
 
 // function that triggers click event when enter is pressed
 UI.enterPress = function() { 
@@ -25,6 +56,7 @@ UI.enterPress();
 
 // function that triggers SoundCloudAPI on click event
 UI.submitClick = function() {
+
 	// listen for clicking the search icon
 	document.querySelector(".js-submit").addEventListener('click',function(){
   	
@@ -35,7 +67,7 @@ UI.submitClick = function() {
   	let searchResults = document.querySelector(".js-search-results");
 		searchResults.innerHTML = '';
 	// search soundcloud with input value
-  	SoundCloudAPI.init(); 
+  	SoundCloudAPI.init();
   	SoundCloudAPI.getTrack(inputValue);
   	
 
@@ -69,7 +101,17 @@ SoundCloudAPI.getTrack = function(inputValue) {
 	});
 }
 
-
+// get tracks with input value that are creative commons only 
+SoundCloudAPI.getTrackCC = function(inputValue) {
+	
+	// find all tracks of query
+	SC.get('/tracks', {
+	   q: inputValue, license: 'cc-by-sa'
+	}).then(function(tracks) {
+	  console.log(tracks);
+	  SoundCloudAPI.renderTracks(tracks);
+	});
+}
 
 
 // display cards

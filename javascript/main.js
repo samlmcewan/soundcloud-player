@@ -30,7 +30,7 @@ UI.ccBox = function() {
     checkBoxDiv.appendChild(label); 
 }
 UI.ccBox();
-
+// hmm
 let isCheckedWithGlobalVariable = false;
 document.getElementById('ccCheckBox').onclick = function() {
     if (this.checked == true) {

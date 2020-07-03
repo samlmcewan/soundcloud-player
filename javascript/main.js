@@ -1,6 +1,6 @@
 "use strict"
 
-// search	
+// search bar
 let UI = {};
 
 // function that triggers click event when enter is pressed
@@ -22,17 +22,16 @@ UI.submitClick = function() {
 	// listen for clicking the search icon
 	document.querySelector(".js-submit").addEventListener('click',function(){
   	
-  	// search soundcloud when clicked
+  	// grab the user input value
   	let inputValue = document.getElementById('userSearch').value;
-  	console.log("hello clicked");
   	console.log(inputValue);
+  	// clear previous search results
   	let searchResults = document.querySelector(".js-search-results");
 		searchResults.innerHTML = '';
+	// search soundcloud with input value
   	SoundCloudAPI.init(); 
   	SoundCloudAPI.getTrack(inputValue);
   	
-  	
-
 
 });
 
@@ -40,15 +39,11 @@ UI.submitClick = function() {
 UI.submitClick();
 
 
-
-// then add reset button that clears search results Storage.clear()
-// dig into soundcloud SDK playing with some parametres - maybe change something on the tracks that are not creative commons?! with if statement
-// add styling to make look super nice 
-
-
 // soundcloud API
 let SoundCloudAPI = {};
 
+
+// initialize API
 SoundCloudAPI.init = function() {
 	SC.initialize({
   	client_id: 'cd9be64eeb32d1741c17cb39e41d254d'
@@ -56,7 +51,7 @@ SoundCloudAPI.init = function() {
 }
 
 
-
+// get tracks with input value
 SoundCloudAPI.getTrack = function(inputValue) {
 	
 	// find all tracks of query
@@ -127,7 +122,7 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	let spanner = document.createElement("span");
 	spanner.innerHTML = "Add to playlist";
 	button.appendChild(spanner);
-
+	// starts function on click event and passes track url
 	button.addEventListener('click', function(){
 	SoundCloudAPI.getEmbed(track.permalink_url);
 
@@ -137,7 +132,7 @@ SoundCloudAPI.renderTracks = function(tracks) {
 
 	});
 
-	// append child
+	// append child elements to card, append card to js-search-results div
 
 	card.appendChild(image);
 	card.appendChild(content);
@@ -154,7 +149,7 @@ SoundCloudAPI.renderTracks = function(tracks) {
 }
 
 
-
+// function that Adds track to sidebar using passed URL
 	SoundCloudAPI.getEmbed = function(trackURL) {
 		console.log("clicked and we're in getEmbed");
 		SC.oEmbed(trackURL, {
@@ -179,16 +174,16 @@ SoundCloudAPI.renderTracks = function(tracks) {
 
 }
 
-
+// local storage so playlist is remembered on refresh
 let sideBar = document.querySelector(".js-playlist");
 sideBar.innerHTML = localStorage.getItem("key"); 	
 
 
-
+//  button that clears playlist
 let createClearBtn = function() {
-	// creat div in sidebar for button
+	
 
-	// creates button that clears playlist
+	
 	let clearBtn = document.createElement("button");
 	clearBtn.classList.add("js-clear");
 	clearBtn.innerHTML = "Clear Playlist";

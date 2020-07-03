@@ -1,26 +1,23 @@
 "use strict"
+
 // search	
 let UI = {};
-// object that will be a function when you press enter it will trigger 
-UI.enterPress = function() {
 
-	button.addEventListener("keyup", function(event) {
+// function that triggers click event when enter is pressed
+UI.enterPress = function() { 
+	let submitField = document.querySelector(".js-search");
+	submitField.addEventListener("keyup", function(event){
 		if (event.keyCode === 13) {
-			event.preventDefault();
-			document.querySelector("js-submit").click();
-    console.log("Enter has been pressed!");
+			console.log("inside enterPress!");
+			document.querySelector(".js-submit").click();
 
 		}
 	})
 
-
-
-
-
-
-
 }
-// object that will be a function when you click it will do x
+UI.enterPress();
+
+// function that triggers soundcloud API on click event
 UI.submitClick = function() {
 	// listen for clicking the search icon
 	document.querySelector(".js-submit").addEventListener('click',function(){

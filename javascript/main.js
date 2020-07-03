@@ -4,44 +4,27 @@
 // search bar
 let UI = {};
 
-UI.ccBox = function() {
+UI.ccBtn = function() {
 
-	let checkBoxDiv = document.getElementById("ccBox");
-	let checkbox = document.createElement("input");
+	let ccSearch = document.getElementById("ccBtnSearch");
+	ccSearch.addEventListener('click',function(){
+		// grab the user input value
+  	let inputValue = document.getElementById('userSearch').value;
+  	console.log(inputValue);
+  	// clear previous search results
+  	let searchResults = document.querySelector(".js-search-results");
+		searchResults.innerHTML = '';
+	// search soundcloud with input value
+  	SoundCloudAPI.init();
+  	SoundCloudAPI.getTrackCC(inputValue);
+  	console.log("the button works");
 
-	checkbox.type = "checkbox"; 
-    checkbox.name = "cc"; 
-    checkbox.value = "value"; 
-    checkbox.id = "ccCheckBox"; 
+});
 
-    // creating label for checkbox 
-    let label = document.createElement('label'); 
-      
-    // assigning attributes for  
-    // the created label tag  
-    label.htmlFor = "ccCheckBox"; 
-      
-    // appending the created text to  
-    // the created label tag  
-    label.appendChild(document.createTextNode("Filter Create Commons Results Only"));
-    // appending the checkbox 
-    // and label to div 
-    checkBoxDiv.appendChild(checkbox); 
-    checkBoxDiv.appendChild(label); 
-}
-UI.ccBox();
-// hmm
-let isCheckedWithGlobalVariable = false;
-document.getElementById('ccCheckBox').onclick = function() {
-    if (this.checked == true) {
-        // the element is checked
-        isCheckedWithGlobalVariable = true;
-        console.log(isCheckedWithGlobalVariable);
-    } else {
-    	console.log("Its not checked but youre seeing this");
-    }
-};
+	}
 
+	
+UI.ccBtn();
 // function that triggers click event when enter is pressed
 UI.enterPress = function() { 
 	let submitField = document.querySelector(".js-search");
@@ -71,7 +54,6 @@ UI.submitClick = function() {
 	// search soundcloud with input value
   	SoundCloudAPI.init();
   	SoundCloudAPI.getTrack(inputValue);
-  	
 
 });
 
@@ -93,6 +75,7 @@ SoundCloudAPI.init = function() {
 
 // get tracks with input value
 SoundCloudAPI.getTrack = function(inputValue) {
+	console.log("ALL TRAX");
 	
 	// find all tracks of query
 	SC.get('/tracks', {
@@ -105,6 +88,7 @@ SoundCloudAPI.getTrack = function(inputValue) {
 
 // get tracks with input value that are creative commons only 
 SoundCloudAPI.getTrackCC = function(inputValue) {
+	console.log("CC ONLY!");
 	
 	// find all tracks of query
 	SC.get('/tracks', {

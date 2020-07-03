@@ -26,13 +26,20 @@ UI.submitClick = function() {
   	let inputValue = document.getElementById('userSearch').value;
   	console.log("hello clicked");
   	console.log(inputValue);
+  	let searchResults = document.querySelector(".js-search-results");
+		searchResults.innerHTML = '';
   	SoundCloudAPI.init(); 
   	SoundCloudAPI.getTrack(inputValue);
+  	
+  	
+
 
 });
 
 }
 UI.submitClick();
+
+
 
 // then add reset button that clears search results Storage.clear()
 // dig into soundcloud SDK playing with some parametres - maybe change something on the tracks that are not creative commons?! with if statement
@@ -146,6 +153,8 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	
 }
 
+
+
 	SoundCloudAPI.getEmbed = function(trackURL) {
 		console.log("clicked and we're in getEmbed");
 		SC.oEmbed(trackURL, {
@@ -169,6 +178,7 @@ SoundCloudAPI.renderTracks = function(tracks) {
 	});
 
 }
+
 
 let sideBar = document.querySelector(".js-playlist");
 sideBar.innerHTML = localStorage.getItem("key"); 	

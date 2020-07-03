@@ -9,25 +9,26 @@ UI.enterPress = function() {
 	submitField.addEventListener("keyup", function(event){
 		if (event.keyCode === 13) {
 			console.log("inside enterPress!");
+			event.preventDefault();
 			document.querySelector(".js-submit").click();
-
 		}
-	})
+	});
 
 }
 UI.enterPress();
 
-// function that triggers soundcloud API on click event
+// function that triggers SoundCloudAPI on click event
 UI.submitClick = function() {
 	// listen for clicking the search icon
 	document.querySelector(".js-submit").addEventListener('click',function(){
   	
-  	// Do something when clicked
+  	// search soundcloud when clicked
   	let inputValue = document.getElementById('userSearch').value;
   	console.log("hello clicked");
   	console.log(inputValue);
   	SoundCloudAPI.init(); 
   	SoundCloudAPI.getTrack(inputValue);
+
 });
 
 }
@@ -122,6 +123,9 @@ SoundCloudAPI.renderTracks = function(tracks) {
 
 	button.addEventListener('click', function(){
 	SoundCloudAPI.getEmbed(track.permalink_url);
+
+
+
 		
 
 	});
@@ -157,6 +161,10 @@ SoundCloudAPI.renderTracks = function(tracks) {
 		  sideBar.insertBefore(box, sideBar.firstChild);
 		  localStorage.setItem("key", sideBar.innerHTML);
 
+		  
+
+
+
 
 	});
 
@@ -167,6 +175,24 @@ sideBar.innerHTML = localStorage.getItem("key");
 
 
 
+let createClearBtn = function() {
+	// creates button that clears playlist
+	let clearBtn = document.createElement("button");
+	clearBtn.classList.add("js-clear");
+	clearBtn.innerHTML = "Clear Playlist";
+	let buttonDiv = document.querySelector(".js-clear-div");
+	buttonDiv.appendChild(clearBtn);
+	clearBtn.addEventListener('click', function() {
+	localStorage.clear();
+	sideBar.innerHTML = "Add tracks to playlist";
+	console.log("inside click clearBtn");
+
+	});
 
 
-// add to playlist and play
+}
+createClearBtn();
+
+
+
+

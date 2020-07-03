@@ -1,10 +1,41 @@
 "use strict"
 // search	
 let UI = {};
-// object that will be a function when you press enter it will do x
-UI.enterPress 
+// object that will be a function when you press enter it will trigger 
+UI.enterPress = function() {
+
+	button.addEventListener("keyup", function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			document.querySelector("js-submit").click();
+    console.log("Enter has been pressed!");
+
+		}
+	})
+
+
+
+
+
+
+
+}
 // object that will be a function when you click it will do x
-UI.submitClick
+UI.submitClick = function() {
+	// listen for clicking the search icon
+	document.querySelector(".js-submit").addEventListener('click',function(){
+  	
+  	// Do something when clicked
+  	let inputValue = document.getElementById('userSearch').value;
+  	console.log("hello clicked");
+  	console.log(inputValue);
+  	SoundCloudAPI.init(); 
+  	SoundCloudAPI.getTrack(inputValue);
+});
+
+}
+UI.submitClick();
+
 // then add reset button that clears search results Storage.clear()
 // dig into soundcloud SDK playing with some parametres - maybe change something on the tracks that are not creative commons?! with if statement
 // add styling to make look super nice 
@@ -19,19 +50,20 @@ SoundCloudAPI.init = function() {
 	});
 }
 
-SoundCloudAPI.init(); 
+
 
 SoundCloudAPI.getTrack = function(inputValue) {
+	
 	// find all tracks of query
 	SC.get('/tracks', {
-	   q: "ailsa and the seahorses"
+	   q: inputValue
 	}).then(function(tracks) {
 	  console.log(tracks);
 	  SoundCloudAPI.renderTracks(tracks);
 	});
 }
 
-SoundCloudAPI.getTrack();  
+
 
 
 // display cards

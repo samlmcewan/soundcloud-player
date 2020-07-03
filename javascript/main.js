@@ -171,11 +171,13 @@ SoundCloudAPI.renderTracks = function(tracks) {
 }
 
 let sideBar = document.querySelector(".js-playlist");
-sideBar.innerHTML = localStorage.getItem("key");
+sideBar.innerHTML = localStorage.getItem("key"); 	
 
 
 
 let createClearBtn = function() {
+	// creat div in sidebar for button
+
 	// creates button that clears playlist
 	let clearBtn = document.createElement("button");
 	clearBtn.classList.add("js-clear");
@@ -191,8 +193,9 @@ let createClearBtn = function() {
 
 
 }
+
+
+
 createClearBtn();
-
-
 
 

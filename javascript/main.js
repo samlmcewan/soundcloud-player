@@ -1,3 +1,9 @@
+// add option (checkbox) for creative commons licence filter - alter the query value to end with q: 'buskers', license: 'cc-by-sa' concatinate probs
+
+
+
+
+
 "use strict"
 
 // search bar
@@ -186,7 +192,7 @@ let createClearBtn = function() {
 	
 	let clearBtn = document.createElement("button");
 	clearBtn.classList.add("js-clear");
-	clearBtn.innerHTML = "Clear Playlist";
+	clearBtn.innerHTML = "&larr;Clear Playlist";
 	let buttonDiv = document.querySelector(".js-clear-div");
 	buttonDiv.appendChild(clearBtn);
 	clearBtn.addEventListener('click', function() {
